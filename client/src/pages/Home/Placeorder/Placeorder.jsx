@@ -5,6 +5,7 @@ import { checkoutHandler } from "../../../Components/Payment/Payment";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { food_list } from "../../../assets/assets";
+import config from '../../../config';
 
 const Placeorder = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -94,7 +95,7 @@ const Placeorder = () => {
     };
     console.log("Order data being sent:", orderData);
     const response = await axios.post(
-      "http://localhost:5001/api/order/checkout",
+      `${config.API_BASE_URL}/order/checkout`,
       orderData,
       {
         headers: {

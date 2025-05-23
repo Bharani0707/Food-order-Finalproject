@@ -4,6 +4,7 @@ import "./SignUp.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import config from '../../config';
 
 const SignUp = ({ setShowSignUp }) => {
   const [data, setData] = useState({
@@ -22,10 +23,7 @@ const SignUp = ({ setShowSignUp }) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5001/api/user/register",
-        data
-      );
+      const response = await axios.post(`${config.API_BASE_URL}/api/auth/register`, data);
 
       if (response.data.success) {
         localStorage.setItem("userData", JSON.stringify(data));

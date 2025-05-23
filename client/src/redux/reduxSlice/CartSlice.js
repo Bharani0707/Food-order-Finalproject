@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import config from '../../config'; // ✅ import baseURL
 import axios from "axios";
 const initialState = {
   cartItems: [],
@@ -7,8 +8,8 @@ export const addToCartAsync = createAsyncThunk(
   "cart/addToCart",
   async ({ itemId, token }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5001/api/cart/add",
+     const response = await axios.post(
+  `${config.API_BASE_URL}/api/cart/add`,
         { itemId },
         { headers: { token } }
       );
@@ -30,8 +31,7 @@ export const addToCartAsync = createAsyncThunk(
 export const removeFromCartAsync = createAsyncThunk(
   "cart/removeFromCart",
   async ({ itemId, token }) => {
-    const response = await axios.post(
-      "http://localhost:5001/api/cart/remove",
+    const response = await axios.post(`${config.API_BASE_URL}/api/cart/remove`,
       { itemId },
       { headers: { token } }
     );

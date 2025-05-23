@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import config from '../../config'; // ✅ at the top
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
 import { assets } from "../../assets/assets";
@@ -24,10 +25,7 @@ const Login = ({ setShowLogin }) => {
   const onLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5001/api/user/login",
-        data
-      );
+      const response = await axios.post(`${config.API_BASE_URL}/api/auth/login`, data);
       if (response.data.success) {
         dispatch(setToken(response.data.token));
         localStorage.setItem("token", response.data.token);

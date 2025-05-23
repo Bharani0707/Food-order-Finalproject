@@ -3,6 +3,7 @@ import "./MyOrders.css";
 import axios from "axios";
 import { assets } from "../../assets/assets";
 import FakeSMS from "../Fakesms"; // correct casing
+import config from '../../config';
 
 const MyOrders = () => {
   const [data, setData] = useState([]);
@@ -14,13 +15,9 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5001/api/order/userorders",
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`${config.API_BASE_URL}/api/orders/user`, {
+  headers: { token },
+});
       if (response.data && Array.isArray(response.data.orders)) {
         const orders = response.data.orders;
         setData(orders);
