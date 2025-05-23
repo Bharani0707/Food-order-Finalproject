@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MyOrders.css";
 import axios from "axios";
 import { assets } from "../../assets/assets";
-import FakeSMS from "../Fakesms"; // correct casing
+import FakeSMS from "../Fakesms";
 import config from '../../config';
 
 const MyOrders = () => {
@@ -15,9 +15,9 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`${config.API_BASE_URL}/api/orders/user`, {
-  headers: { token },
-});
+      const response = await axios.get(`${config.API_BASE_URL}/api/order/user`, {
+        headers: { token },
+      });
       if (response.data && Array.isArray(response.data.orders)) {
         const orders = response.data.orders;
         setData(orders);

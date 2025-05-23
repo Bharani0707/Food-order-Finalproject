@@ -1,14 +1,16 @@
 import React from "react";
 import axios from "axios";
+import config from "../../config";
 
 export const checkoutHandler = async (amount, userId, items, address) => {
   try {
     const {
       data: { key },
-    } = await axios.get("http://localhost:5001/api/getkey");
+    } = await axios.get(`${config.API_BASE_URL}/api/getkey`);
+
     const {
       data: { order },
-    } = await axios.post("http://localhost:5001/api/order/checkout", {
+    } = await axios.post(`${config.API_BASE_URL}/api/order/checkout`, {
       amount,
       userId,
       items,
@@ -24,22 +26,15 @@ export const checkoutHandler = async (amount, userId, items, address) => {
       image: "./images/Logo.FDW.png",
       order_id: order.id,
       handler: async function (response) {
-        console.log(
-          "Payment successful, full response from Razorpay:",
-          response
-        );
-        const razorpay_payment_id = response.razorpay_payment_id;
-        const razorpay_order_id = response.razorpay_order_id;
-        const razorpay_signature = response.razorpay_signature;
-        try {
-          if (!razorpay_signature || !razorpay_order_id) {
-            console.error("Razorpay signature or order ID is missing");
-            alert("Payment verification may fail.");
-            return;
-          }
+        const {
+          razorpay_payment_id,
+          razorpay_order_id,
+          razorpay_signature,
+        } = response;
 
+        try {
           const verifyRes = await axios.post(
-            "http://localhost:5001/api/order/paymentverify",
+            `${config.API_BASE_URL}/api/order/paymentverify`,
             {
               razorpay_payment_id,
               razorpay_order_id,
@@ -51,7 +46,6 @@ export const checkoutHandler = async (amount, userId, items, address) => {
             },
             { headers: { "Content-Type": "application/json" } }
           );
-          console.log("Verify Response:", verifyRes.data);
 
           if (verifyRes.data.success) {
             window.location.replace(
@@ -85,6 +79,7 @@ export const checkoutHandler = async (amount, userId, items, address) => {
     alert("There was an error processing your payment. Please try again.");
   }
 };
+
 const Payment = () => {
   return <div></div>;
 };
