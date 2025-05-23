@@ -1,0 +1,76 @@
+.foodDisplay {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
+  margin-left: 110px;
+  margin-right: 35px;
+  gap: -30px;
+  row-gap: 20px;
+}
+.head-text-menu {
+  margin-left: 110px;
+  margin-top: 10px;
+  font-size: 28px;
+}
+.head-text-menu span {
+  color: crimson;
+}
+.foodDisplay > div {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 80%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.foodDisplay > div:hover {
+  transform: scale(1.05);
+}
+.food-info {
+  padding: 15px;
+}
+
+.food-info h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.food-info p {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.food-info p:last-child {
+  font-weight: bold;
+  margin-top: 10px;
+  color: crimson;
+}
+.food-image-container {
+  position: relative;
+}
+.food-image-container .image {
+  width: 100%;
+}
+.food-image-container .add {
+  width: 35px;
+  position: absolute;
+  bottom: 15px;
+  cursor: pointer;
+  right: 15px;
+  border-radius: 50%;
+}
+.food-item-counter {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  gap: 10px;
+  padding: 6px;
+  background-color: white;
+}
+.food-item-counter img {
+  width: 30px;
+}

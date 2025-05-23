@@ -1,0 +1,55 @@
+.ViewMenu {
+  display: flex;
+  flex-direction: column;
+}
+.ViewMenu h2 {
+  font-size: 28px;
+  margin-left: 110px;
+  font-family: "Poppins", sans-serif;
+}
+.ViewMenu span {
+  color: crimson;
+  font-family: "Poppins", sans-serif;
+}
+.ViewMenu-text {
+  margin-left: 110px;
+  margin-top: 12px;
+}
+.menu-list {
+  display: flex;
+  align-items: center;
+  margin-top: 28px;
+  text-align: center;
+  overflow-x: scroll;
+  gap: 33px;
+  margin-left: 110px;
+}
+.menu-list::-webkit-scrollbar {
+  display: none;
+}
+.menu-list-item img {
+  width: 130px;
+  min-width: 80px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.menu-list-item p {
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.ViewMenu hr {
+  margin: 10px 0px;
+  width: 1280px;
+  height: 2px;
+  margin-top: 18px;
+  margin-left: 110px;
+  background-color: #e2e2e2;
+  border: none;
+}
+.menu-list-item .active {
+  border: 3.5px solid crimson;
+  padding: 2px;
+}

@@ -1,0 +1,58 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(237, 244, 255);
+  border-radius: 1px;
+  box-shadow: 0 0 20px rgb(255, 0, 0);
+}
+.header-bg {
+  height: 40vw;
+  margin: 30px auto;
+  background-size: contain;
+  position: relative;
+  filter: blur(3.5px);
+  width: 1298px;
+  border-radius: 10px;
+}
+.header-container {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  align-items: start;
+  gap: 1.5vw;
+  max-width: 800px;
+  bottom: 10%;
+  left: 5vw;
+  margin-bottom: 12vw;
+  border-radius: 10px;
+  margin-left: 85px;
+}
+.header-container h2 {
+  font-size: 43px;
+  font-weight: bold;
+  margin-top: 10px;
+  line-height: 53px;
+}
+
+.header-container p {
+  margin-bottom: 14px;
+  font-size: 1.3em;
+  line-height: 45px;
+  margin-top: 8px;
+}
+
+.header-container button {
+  background-color: crimson;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.header-container button:hover {
+  background-color: white;
+  color: black;
+}

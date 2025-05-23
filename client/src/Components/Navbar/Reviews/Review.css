@@ -1,0 +1,29 @@
+.review-card {
+  display: flex;
+  margin-left: 110px;
+  margin-top: 20px;
+  gap: 30px;
+}
+.card {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.head-text {
+  margin-top: 16px;
+  font-size: 22px;
+  margin-left: 110px;
+}
+.head-text span {
+  color: crimson;
+}
+.hr {
+  margin: 10px 0px;
+  width: 1280px;
+  height: 2px;
+  margin-top: 40px;
+  margin-left: 110px;
+  background-color: #e2e2e2;
+  border: none;
+}
+.para {
+  text-align: justify;
+}

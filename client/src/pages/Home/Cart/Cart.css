@@ -1,0 +1,110 @@
+.cart {
+  margin-top: 80px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.cart-items-title {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  align-items: center;
+  color: grey;
+  font-size: max(1vw, 12px);
+}
+.cart-items-item {
+  margin: 10px 0px;
+  color: #000;
+  justify-content: center;
+  align-items: center;
+}
+.cart-items-item img {
+  width: 70px;
+}
+.cart hr {
+  height: 1px;
+  background-color: #e2e2e2;
+  border: none;
+}
+.remove-item {
+  cursor: pointer;
+  font-weight: 400;
+}
+.cart-bottom {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: max(12vw, 12px);
+}
+.cart-total {
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+}
+.cart-total-info {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+}
+.cart-total hr {
+  margin: 10px 0px;
+}
+.cart-total button {
+  padding: 12px 0px;
+  background-color: crimson;
+  border: none;
+  color: white;
+  width: max(14vw, 180px);
+  cursor: pointer;
+}
+.cart-total button:hover {
+  border: 2px solid crimson;
+  background: transparent;
+  color: black;
+}
+.cart-promo-code {
+  display: flex;
+  flex: 1;
+  margin-top: 30px;
+}
+.cart-promo-code p {
+  font-size: 16px;
+}
+.cart-promo-code-input {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eaeaea;
+  border-radius: 4px;
+}
+.cart-promo-code-input button {
+  padding: 12px 0px;
+  background-color: crimson;
+  border: none;
+  color: white;
+  width: max(10vw, 90px);
+  cursor: pointer;
+}
+.cart-promo-code-input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: 8px;
+  align-items: center;
+  padding: 10px 0px;
+  width: max(12vw, 90px);
+  margin-top: 5px;
+}
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+@media (max-width: 750px) {
+  .cart-bottom {
+    flex-direction: column-reverse;
+  }
+  .cart-promo-code {
+    justify-content: start;
+  }
+}

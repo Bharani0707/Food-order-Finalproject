@@ -1,0 +1,31 @@
+.admin-logo {
+  width: 90px;
+}
+.profile-image {
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.admin-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #1e54aa, #121e26, #2a23fd, #fc575e);
+  box-shadow: 0 2px 10px rgb(255, 1, 1);
+  padding: 7px 70px;
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

@@ -1,0 +1,150 @@
+.login-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: #1d2a35;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login box */
+.login-box {
+  background-color: #121e26;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+  text-align: center;
+  width: 350px;
+}
+
+/* Icon */
+.login-icon {
+  font-size: 48px;
+  color: #00f5d4;
+  margin-bottom: 10px;
+}
+
+/* Heading */
+.login-box h2 {
+  color: #ffffff;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* Labels */
+.login-box label {
+  color: #7f8c8d;
+  font-size: 12px;
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+}
+
+/* Inputs */
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #00f5d4;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+/* Button */
+.login-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  width: 100%;
+  background-color: transparent;
+  border: 1.5px solid #00f5d4;
+  color: #00f5d4;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #00f5d4;
+  color: #121e26;
+}
+.login-footer {
+margin-top: 20px;
+color: #7f8c8d;
+font-size: 12px;
+  
+}
+
+
+
+.login-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Background image and animation */
+  background-image: url(); /* image path */
+  background-size: cover;
+  background-position: center;
+  animation: backgroundScroll 22s linear infinite;
+}
+
+
+.login-wrapper::before {
+  content: "";
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.6); /* dark overlay */
+  z-index: 0;
+}
+
+/* Then add position: relative & z-index to login-box */
+.login-box {
+  position: relative;
+  z-index: 1;
+}
+
+.bike-animation {
+  position: absolute;
+  bottom: 100px;
+  width: 480px; /* Reduced size */
+  animation: rideBike 9s linear infinite;
+  transform: scaleX(1); /* Facing right */
+  z-index: 0;
+}
+
+@keyframes rideBike {
+  0% {
+    right: -150px; /* Start outside left */
+  }
+  100% {
+    right: 100vw; /* Go all the way to right */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Animation Keyframes */
+@keyframes backgroundScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
