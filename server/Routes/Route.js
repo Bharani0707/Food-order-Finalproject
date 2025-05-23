@@ -1,33 +1,13 @@
 const express = require("express");
-const {
-  addFoodItem,
-  displayList,
-  removeFoodItems,
-} = require("../Controllers/FoodController.js");
-const multer = require("multer");
+const userRoute = require("./UserRoute");
+const cartRoute = require("./CartRoute");
+const orderRoute = require("./OrderRoute");
 
-const foodRouter = express.Router();
+const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: "./Uploads",
-  filename: (req, file, cb) => {
-    return cb(null, `${Date.now()} ${file.originalname}`);
-  },
-});
+// Mount all routes here
+router.use("/auth", userRoute);        // -> /api/auth/register
+router.use("/cart", cartRoute);
+router.use("/order", orderRoute);
 
-const upload = multer({ storage: storage });
-
-foodRouter.post(
-  "/add",
-  upload.single("image"),
-  (req, res, next) => {
-    console.log("Request body:", req.body);
-    console.log("File uploaded:", req.file);
-    next();
-  },
-  addFoodItem
-);
-foodRouter.get("/list", displayList);
-foodRouter.post("/remove", removeFoodItems);
-
-module.exports = foodRouter;
+module.exports = router;
