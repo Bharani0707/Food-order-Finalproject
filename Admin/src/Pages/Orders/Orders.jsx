@@ -4,8 +4,13 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { assets } from "../../assets/assets";
 
-const Orders = ({ url }) => {
+// ✅ Import backend URL from config
+import config from "../../config";
+const url = config.API_BASE_URL;
+
+const Orders = () => {
   const [orders, setOrders] = useState([]);
+
   const fetchAllOrders = async () => {
     try {
       const response = await axios.get(url + "/api/order/list");
@@ -20,51 +25,45 @@ const Orders = ({ url }) => {
     }
   };
 
-  // Function to handle order status update
-
   const statusHandler = async (event, orderId) => {
-  try {
-    const response = await axios.post(url + "/api/order/status", {
-      orderId,
-      status: event.target.value,
-    });
+    try {
+      const response = await axios.post(url + "/api/order/status", {
+        orderId,
+        status: event.target.value,
+      });
 
-    if (response.data.message?.toLowerCase().includes("status updated")) {
-      toast.success("Order status updated.");
-      await fetchAllOrders();
-    } else {
-      toast.error("Failed to update order status.");
+      if (response.data.message?.toLowerCase().includes("status updated")) {
+        toast.success("Order status updated.");
+        await fetchAllOrders();
+      } else {
+        toast.error("Failed to update order status.");
+      }
+      console.log("Update Response:", response.data);
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      toast.error("Error updating order status.");
     }
-    console.log("Update Response:", response.data);
-
-  } catch (error) {
-    console.error("Error updating order status:", error);
-    toast.error("Error updating order status.");
-  }
-};
-
-// Fetch all orders on component mount
+  };
 
   useEffect(() => {
     fetchAllOrders();
   }, []);
+
   return (
     <div className="order add">
       <h3>Orders Page</h3>
       <div className="order-list">
         {orders.length > 0 ? (
-          orders.map((order, index) => (
+          orders.map((order) => (
             <div key={order._id} className="order-item">
-              <img src={assets.parcelIcon} alt=""></img>
+              <img src={assets.parcelIcon} alt="Parcel Icon" />
               <div>
                 <p className="order-item-food">
-                  {order.items.map((item, idx) => {
-                    if (idx === order.items.length - 1) {
-                      return item.name + " x " + item.quantity;
-                    } else {
-                      return item.name + " x " + item.quantity + ", ";
-                    }
-                  })}
+                  {order.items.map((item, idx) =>
+                    idx === order.items.length - 1
+                      ? item.name + " x " + item.quantity
+                      : item.name + " x " + item.quantity + ", "
+                  )}
                 </p>
                 <p className="order-item-name">
                   {order.address.firstName + " " + order.address.lastName}
@@ -78,7 +77,7 @@ const Orders = ({ url }) => {
                       ", " +
                       order.address.country +
                       ", " +
-                      order.address.zipcode}{" "}
+                      order.address.zipcode}
                   </p>
                 </div>
                 <p className="order-item-phone">{order.address.phone}</p>

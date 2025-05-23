@@ -1,20 +1,34 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "./Login.css"; // Dark theme CSS import
+import config from '../../config';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (email === "Bharani@1" && password === "admin123") {
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post(`${config.API_BASE_URL}/api/auth/admin-login`, {
+      email,
+      password,
+    });
+
+    if (response.data.success) {
       toast.success("Login Successful!");
-      onLogin();
+      localStorage.setItem("adminToken", response.data.token); // optional
+      onLogin(); // navigate to admin dashboard
     } else {
-      toast.error("Invalid email or password!");
+      toast.error(response.data.message || "Invalid credentials!");
     }
-  };
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message || "Something went wrong during login!"
+    );
+  }
+};
 
   return (
     <div className="login-wrapper">

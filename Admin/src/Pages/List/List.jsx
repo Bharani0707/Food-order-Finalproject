@@ -1,30 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./List.css";
 import axios from "axios";
-import { useState } from "react";
-
 import { toast } from "react-toastify";
 
+// ✅ Import backend URL from config.js
+import config from "../config";
+const url = config.API_BASE_URL;
+
 const List = () => {
-  const url = "http://localhost:5001";
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
-    const response = await axios.get(`${url}/api/food/list`);
-    console.log(response.data);
-    if (response.data.success) {
-      setList(response.data.data);
-    } else {
-      toast.error("Error");
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      if (response.data.success) {
+        setList(response.data.data);
+      } else {
+        toast.error("Error loading food items");
+      }
+    } catch (error) {
+      toast.error("Failed to fetch food list");
+      console.error(error);
     }
   };
+
   const removeFood = async (foodId) => {
-    const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-    await fetchList();
+    try {
+      await axios.post(`${url}/api/food/remove`, { id: foodId });
+      await fetchList();
+    } catch (error) {
+      toast.error("Failed to remove food item");
+      console.error(error);
+    }
   };
+
   useEffect(() => {
     fetchList();
   }, []);
+
   return (
     <div className="list add flex-col">
       <p>All Food List</p>
@@ -41,7 +54,7 @@ const List = () => {
           return (
             <div key={index} className="list-table-format">
               <img
-                src={`http://localhost:5001/images/${imagePath}`}
+                src={`${url}/images/${imagePath}`} // ✅ also use live image path
                 alt="Food Item"
               />
               <p>{item.name}</p>
