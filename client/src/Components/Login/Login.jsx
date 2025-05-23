@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/reduxSlice/AuthSlice";
 import { ToastContainer, toast } from "react-toastify";
 
-
 const Login = ({ setShowLogin }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
@@ -25,7 +24,9 @@ const Login = ({ setShowLogin }) => {
   const onLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${config.API_BASE_URL}/api/auth/login`, data);
+      // ✅ Fixed: Correct API endpoint
+      const response = await axios.post(`${config.API_BASE_URL}/api/user/login`, data);
+      
       if (response.data.success) {
         dispatch(setToken(response.data.token));
         localStorage.setItem("token", response.data.token);
@@ -33,7 +34,7 @@ const Login = ({ setShowLogin }) => {
 
         setTimeout(() => {
           setShowLogin(false); // Close modal after toast
-        }, 4000);
+        }, 2000);
       } else {
         toast.error(response.data.message);
       }
@@ -85,9 +86,7 @@ const Login = ({ setShowLogin }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        closeButton={false} 
-       
-        
+        closeButton={false}
       />
     </div>
   );
