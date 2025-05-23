@@ -4,7 +4,7 @@ import "./SignUp.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import config from '../../config';
+import config from "../../config";
 
 const SignUp = ({ setShowSignUp }) => {
   const [data, setData] = useState({
@@ -23,20 +23,21 @@ const SignUp = ({ setShowSignUp }) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(`${config.API_BASE_URL}/api/auth/register`, data);
+      // ✅ Corrected API URL
+      const response = await axios.post(`${config.API_BASE_URL}/api/user/register`, data);
 
       if (response.data.success) {
         localStorage.setItem("userData", JSON.stringify(data));
-        toast.success("Sign-up successful!"); 
+        toast.success("Sign-up successful!");
         setTimeout(() => {
-          setShowSignUp(false); // Close the modal after toast shows
-        }, 2000); //  1.5s to let toast appear
+          setShowSignUp(false); // Close the modal after toast
+        }, 2000);
       } else {
-        toast.error(response.data.message); 
+        toast.error(response.data.message || "Sign-up failed");
       }
     } catch (error) {
       console.error("Error during sign-up:", error);
-      toast.error("Sign-up failed. Please try again."); // Toast error
+      toast.error("Sign-up failed. Please try again.");
     }
   };
 
@@ -84,7 +85,6 @@ const SignUp = ({ setShowSignUp }) => {
         </div>
       </form>
 
-      {/* Toast container should be rendered once */}
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -94,9 +94,7 @@ const SignUp = ({ setShowSignUp }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        closeButton={false} 
-        
-         
+        closeButton={false}
       />
     </div>
   );
