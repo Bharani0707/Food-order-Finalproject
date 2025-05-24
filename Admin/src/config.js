@@ -1,18 +1,18 @@
-// src/config.js - இந்த file-ஐ உங்க src folder-ல create பண்ணுங்க
+
 const config = {
-  // உங்க Render backend URL-ஐ இங்க போடுங்க
-  API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com',
   
-  // வேற environments-க்கு
+  API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com',  // Default URL for production
+  
+
   development: {
-    API_BASE_URL: 'http://localhost:5000' // உங்க local backend port
+    API_BASE_URL: 'http://localhost:5000' // Local development URL
   },
   production: {
-    API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com'
+    API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com'   //for production
   }
 };
 
-// Environment base-ல config export பண்ணும்
+
 const currentConfig = process.env.NODE_ENV === 'production' 
   ? config.production 
   : config.development;
