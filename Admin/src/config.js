@@ -1,20 +1,14 @@
 
 const config = {
-  
-  API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com',  // Default URL for production
-  
-
   development: {
-    API_BASE_URL: 'http://localhost:5000' // Local development URL
+    API_BASE_URL: 'http://localhost:5000'
   },
   production: {
-    API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com'   //for production
+    API_BASE_URL: 'https://food-order-finalproject-serverside.onrender.com'
   }
 };
 
-
-const currentConfig = process.env.NODE_ENV === 'production' 
-  ? config.production 
-  : config.development;
+const currentEnv = process.env.NODE_ENV || 'development'; // fallback if undefined
+const currentConfig = config[currentEnv];
 
 export default currentConfig;
