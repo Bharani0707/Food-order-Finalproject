@@ -14,23 +14,30 @@ const SignUp = ({ setShowSignUp }) => {
   });
 
   const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+    const { name, value } = event.target;
+    setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const onSignUp = async (event) => {
     event.preventDefault();
 
     try {
-      // ✅ Corrected API URL
-      const response = await axios.post(`${config.API_BASE_URL}/api/user/register`, data);
+      const response = await axios.post(
+        `${config.API_BASE_URL}/api/user/register`,
+        data
+      );
 
       if (response.data.success) {
-        localStorage.setItem("userData", JSON.stringify(data));
+        //  Backend
+        localStorage.setItem(
+          "userData",
+          JSON.stringify(response.data.user)
+        );
+
         toast.success("Sign-up successful!");
+
         setTimeout(() => {
-          setShowSignUp(false); // Close the modal after toast
+          setShowSignUp(false); // Modal close
         }, 2000);
       } else {
         toast.error(response.data.message || "Sign-up failed");
@@ -49,9 +56,10 @@ const SignUp = ({ setShowSignUp }) => {
           <img
             onClick={() => setShowSignUp(false)}
             src={assets.cross_icon}
-            alt=""
+            alt="Close"
           />
         </div>
+
         <div className="sign-up-inputs">
           <input
             name="name"
@@ -78,7 +86,9 @@ const SignUp = ({ setShowSignUp }) => {
             required
           />
         </div>
+
         <button type="submit">Sign Up</button>
+
         <div className="sign-save">
           <input type="checkbox" />
           <h5>Save login info</h5>

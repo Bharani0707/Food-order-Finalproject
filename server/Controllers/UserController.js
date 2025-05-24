@@ -1,3 +1,5 @@
+
+
 const userModel = require("../Models/UserModel.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -5,7 +7,7 @@ const validator = require("validator");
 
 // Helper function to create JWT
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "3d" }); // Optional: add expiry
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "3d" });
 };
 
 // ------------------------
@@ -45,7 +47,16 @@ const registerUser = async (req, res) => {
     // Create token
     const token = createToken(savedUser._id);
 
-    res.status(200).json({ success: true, token });
+    // ✅ Return full user details (without password)
+    res.status(200).json({
+      success: true,
+      user: {
+        _id: savedUser._id,
+        name: savedUser.name,
+        email: savedUser.email,
+      },
+      token,
+    });
   } catch (error) {
     console.error("Registration error:", error);
     res.status(500).json({ success: false, message: "Internal server error." });
@@ -74,7 +85,16 @@ const loginUser = async (req, res) => {
     // Create token
     const token = createToken(user._id);
 
-    res.status(200).json({ success: true, token });
+    // ✅ Return full user details (without password)
+    res.status(200).json({
+      success: true,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+      token,
+    });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ success: false, message: "Internal server error." });
