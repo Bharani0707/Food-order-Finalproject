@@ -4,8 +4,7 @@ import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import config from "../config"; // go one level up from Add.jsx
-
+import config from "../../config"; // Import the config file for API base URL
 
 const Add = () => {
   const url = "http://localhost:5001";

@@ -3,8 +3,8 @@ import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// ✅ Import backend URL from config.js
-import config from "../config";
+// ✅ Corrected path to config.js
+import config from "../../config";
 const url = config.API_BASE_URL;
 
 const List = () => {
@@ -54,7 +54,7 @@ const List = () => {
           return (
             <div key={index} className="list-table-format">
               <img
-                src={`${url}/images/${imagePath}`} // ✅ also use live image path
+                src={`${url}/images/${imagePath}`}
                 alt="Food Item"
               />
               <p>{item.name}</p>
