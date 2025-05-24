@@ -13,17 +13,23 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     try {
+      const token = localStorage.getItem("token");
       const userData = JSON.parse(localStorage.getItem("userData"));
       const userId = userData?._id;
 
-      if (!userId) {
-        console.error("User ID not found in localStorage");
+      if (!token || !userId) {
+        console.error("Token or User ID missing in localStorage");
         return;
       }
 
       const response = await axios.post(
         `${config.API_BASE_URL}/api/order/userorders`,
-        { userId }
+        {}, // body not needed since backend decodes from token
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ send token
+          },
+        }
       );
 
       if (response.data && Array.isArray(response.data.orders)) {

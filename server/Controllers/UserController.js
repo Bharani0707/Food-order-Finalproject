@@ -1,4 +1,4 @@
-
+// ✅ Full Fixed Version of UserController.js
 
 const userModel = require("../Models/UserModel.js");
 const jwt = require("jsonwebtoken");
